@@ -1,37 +1,38 @@
-import queries from "../database/dummy";
+import QueryModel from "../database/queries";
 
-export const getAllqueries = (req, res) => {
-	res.status(200).send({
+export const getAllqueries = async (req, res) => {
+	const queries = await QueryModel.find();
+	res.status(200).json({
 		status: 200,
 		message: "Queries fetched successfully",
 		data: { queries },
 	});
 };
 
-export const getOneQuery = (req, res) => {
-	const query = queries.find((c) => c.id === parseInt(req.params.id));
+export const getOneQuery = async (req, res) => {
+	const query = await QueryModel.findOne({ _id: req.params.id });
 	if (!query)
-		return res.status(404).send({
+		return res.status(404).json({
 			status: 404,
 			message: "Query was not found",
 		});
-	res.status(200).send({
+	res.status(200).json({
 		status: 200,
 		message: "Query fetched successfully",
 		data: { query },
 	});
 };
 
-export const createquery = (req, res) => {
-	const query = {
-		id: queries.length + 1,
+export const createquery = async (req, res) => {
+	const query = new QueryModel({
 		name: req.body.name,
+		email: req.body.email,
 		query: req.body.query,
-		email: req.body.email
-	};
-	queries.push(query);
-	res.status(200).send({
-		status: 200,
+	});
+
+	query.save();
+	res.status(201).json({
+		status: 201,
 		message: "Query created successfully",
 		data: { query },
 	});
