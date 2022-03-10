@@ -9,5 +9,5 @@ mongoose
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	})
-	.then((result) => console.log(result))
-	.catch((error) => console.log(error));
+	.then((result) => console.log(" Database connection succesfull"))
+	.catch((error) => console.log(" Database connection failed", error));
