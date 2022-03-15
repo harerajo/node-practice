@@ -4,6 +4,8 @@ export const validateArticle = (req, res, next) => {
 	const schema = Joi.object({
 		title: Joi.string().min(5).required(),
 		content: Joi.string().min(5).required(),
+		author: Joi.string().min(5).required(),
+		coverImage: Joi.string(),
 	});
 	const { error } = schema.validate(req.body);
 

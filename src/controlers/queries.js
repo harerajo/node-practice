@@ -10,7 +10,7 @@ export const getAllqueries = async (req, res) => {
 };
 
 export const getOneQuery = async (req, res) => {
-	const query = await QueryModel.findOne({ _id: req.params.id });
+	const query = await QueryModel.findById(req.params.id);
 	if (!query)
 		return res.status(404).json({
 			status: 404,

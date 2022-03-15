@@ -27,6 +27,7 @@ export const createArticles = async (req, res) => {
 	const article = new Articles({
 		title: req.body.title,
 		content: req.body.content,
+		author: req.body.author,
 		comments: req.body.comment,
 	});
 	article.save();
@@ -62,6 +63,7 @@ export const updateArticles = async (req, res) => {
 
 	article.title = req.body.title;
 	article.content = req.body.content;
+	article.author = req.body.author;
 	article.save();
 
 	res.status(200).json({

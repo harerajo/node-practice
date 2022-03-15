@@ -1,27 +1,40 @@
 {
-  "name": "my-personal-blog",
-  "version": "1.0.0",
-  "description": "todo app reset api",
-  "main": "index.js",
-  "author": "harerajo10@gmail.com.com",
-  "scripts": {
-    "start:dev": "nodemon --exec babel-node src/index.js",
-    "start": "node dist/index.js",
-    "build": "babel src --out-dir dist"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "dotenv": "^16.0.0",
-    "express": "^4.17.3",
-    "joi": "^17.6.0",
-    "mongoose": "^6.2.4",
-    "pug": "^3.0.2"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.5",
-    "@babel/node": "^7.16.8",
-    "@babel/preset-env": "^7.16.11",
-    "nodemon": "^2.0.15"
-  }
+	"name": "my-personal-blog",
+	"version": "1.0.0",
+	"description": "todo app reset api",
+	"main": "index.js",
+	"author": "harerajo10@gmail.com.com",
+	"scripts": {
+		"start:dev": "cross-env NODE_ENV=dev nodemon --exec babel-node src/index.js",
+		"start": "cross-env NODE_ENV=prod node dist/index.js",
+		"test": "cross-env NODE_ENV=test nyc --reporter=text mocha --recursive --exit --timeout 10000 --require @babel/register src/tests",
+		"build": "babel src --out-dir dist"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"bcrypt": "^5.0.1",
+		"cloudinary": "^1.28.1",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.0.0",
+		"express": "^4.17.3",
+		"joi": "^17.6.0",
+		"jsonwebtoken": "^8.5.1",
+		"mongoose": "^6.2.4",
+		"pug": "^3.0.2"
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.17.6",
+		"@babel/core": "^7.17.5",
+		"@babel/node": "^7.16.8",
+		"@babel/preset-env": "^7.16.11",
+		"chai": "^4.3.6",
+		"chai-http": "^4.3.0",
+		"jest": "^27.5.1",
+		"mocha": "^9.2.2",
+		"nodemon": "^2.0.15",
+		"nyc": "^15.1.0"
+	},
+	"engines": {
+		"node": "17.6.0"
+	}
 }
