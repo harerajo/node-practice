@@ -10,7 +10,6 @@ import swagger from "./swagger/index";
 import cors from 'cors';
 
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 app.use(
@@ -25,7 +24,6 @@ app.use("/api/queries", queries);
 app.use("/api/articles", articles);
 app.use("/api/subscription", subscribers);
 app.use("/api/auth", auth);
-app.set("view engine", "pug");
 
 app.use((req, res) =>
 	res.status(404).send({ status: 404, error: `Route ${req.url} not found` })
