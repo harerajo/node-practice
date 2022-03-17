@@ -20,7 +20,9 @@
 		"joi": "^17.6.0",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^6.2.4",
-		"pug": "^3.0.2"
+		"pug": "^3.0.2",
+		"swagger-jsdoc": "^6.1.0",
+		"swagger-ui-express": "^4.3.0"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.17.6",
