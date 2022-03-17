@@ -11,7 +11,7 @@ let adminToken = "";
 let id;
 
 describe("SUBSCRIBERS TESTING", () => {
-	beforeEach(() => {
+	before(() => {
 		mongoose.connection.dropCollection("subscribers");
 	});
 	it("Should login a user", (done) => {

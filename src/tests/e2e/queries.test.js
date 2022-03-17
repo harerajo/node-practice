@@ -8,10 +8,10 @@ chai.use(chaiHttp);
 
 let visitoToken = "";
 let adminToken = "";
-let id;
+let queryId;
 
 describe("QUERIES TESTING", () => {
-	beforeEach(() => {
+	before(() => {
 		mongoose.connection.dropCollection("queries");
 	});
 	it("Should login a user", (done) => {
@@ -40,7 +40,8 @@ describe("QUERIES TESTING", () => {
 			.end((err, res) => {
 				expect(res.body.message).to.be.equal("Query created successfully");
 				expect(res.status).to.be.equal(201);
-				id = res.body.data.queries._id;
+				queryId = res.body.data.query._id;
+				console.log(queryId);
 				done();
 			});
 	});
@@ -60,7 +61,7 @@ describe("QUERIES TESTING", () => {
 	it("should fetch one query query", async (done) => {
 		chai
 			.request(app)
-			.get(`/api/queries/${id}`)
+			.get(`/api/queries/${queryId}`)
 			.set("token", adminToken)
 			.end((err, res) => {
 				expect(res.body.message).to.be.equal("wowowowowo");

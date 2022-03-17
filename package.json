@@ -7,7 +7,7 @@
 	"scripts": {
 		"start:dev": "cross-env NODE_ENV=dev nodemon --exec babel-node src/index.js",
 		"start": "cross-env NODE_ENV=prod node dist/index.js",
-		"test": "cross-env NODE_ENV=test nyc --reporter=text mocha --recursive --exit --timeout 40000 --require @babel/register src/tests",
+		"test": "cross-env NODE_ENV=test nyc --reporter=text mocha --recursive --exit --timeout 50000 --require @babel/register src/tests",
 		"build": "babel src --out-dir dist"
 	},
 	"license": "MIT",

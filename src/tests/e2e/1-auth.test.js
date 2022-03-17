@@ -12,7 +12,7 @@ let adminToken = "";
 describe("USER AUTHENTICATION TESTS", () => {
 	before((done) => {
 		mongoose.connection.dropCollection("users");
-		// setTimeout(() => {}, 5000);
+
 		done();
 	});
 
@@ -29,7 +29,7 @@ describe("USER AUTHENTICATION TESTS", () => {
 			.post("/api/auth/signup")
 			.send(userToRegister);
 		expect(res.status).to.be.equal(201);
-		// setTimeout(() => {}, 5000);
+
 	});
 	// LOGIN TESTS
 	it("Should login a user", (done) => {

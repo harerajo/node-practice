@@ -7,7 +7,7 @@ import articles from "./routes/articles";
 import subscribers from "./routes/subscribers";
 import "./database";
 import swagger from "./swagger/index";
-import cors from 'cors';
+import cors from "cors";
 
 const app = express();
 app.use(cors());
