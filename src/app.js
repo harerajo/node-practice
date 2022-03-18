@@ -7,24 +7,11 @@ import articles from "./routes/articles";
 import subscribers from "./routes/subscribers";
 import "./database";
 import swagger from "./swagger/index";
-// import swaggerUiExpress from "swagger-ui-express";
-// import swaggerJSDoc from "swagger-jsdoc";
+import cors from 'cors';
 
-// const swaggerOption = {
-// 	swaggerDefinition: {
-// 		info: {
-// 			title: "Articles API",
-// 			description: "article description",
-// 			contact: {
-// 				author: "jonathan swagger",
-// 			},
-// 			servers: ["http://localhost:3000"],
-// 		},
-// 	},
-// 	apis: ["app.js"],
-// };
-// const swaggerDocs = swaggerJSDoc(swaggerOption);
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 app.use(
 	express.urlencoded({
@@ -34,15 +21,6 @@ app.use(
 
 app.use("/api-docs", swagger);
 app.use("/api", home);
-
-/**
- * @swagger
- * /api/queries:
- * get:
- * 	 description: Get all queries
- *   responses:
- * 		'200'
- */
 app.use("/api/queries", queries);
 app.use("/api/articles", articles);
 app.use("/api/subscription", subscribers);
