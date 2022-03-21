@@ -63,22 +63,31 @@ export const isAuthorised = async (req, res, next) => {
 };
 
 export const isAdmin = (req, res, next) => {
-	const { token } = req.headers;
-	if (token) {
-		const payload = decodeToken(token);
-		if (payload) {
-			if (payload.role == "admin") return next();
-			return res.status(401).json({
-				status: 401,
-				message: "You are not authorized to perform this action",
-			});
+	try {
+		const { token } = req.headers;
+		if (token) {
+			const payload = decodeToken(token);
+			if (payload) {
+				if (payload.role == "admin") return next();
+				return res.status(401).json({
+					status: 401,
+					message: "You are not authorized to perform this action",
+				});
+			}
+			
 		}
-
 		return res
 			.status(401)
 			.json({ status: 401, message: "Token must be provided and valid" });
+	} catch (error) {
+		if (error.name === "JsonWebTokenError")
+			return res.status(400).json({
+				status: 400,
+				message: "Token must be provided and valid",
+			});
+		return res.status(500).json({
+			status: 500,
+			message: "Server error",
+		});
 	}
-	return res
-		.status(401)
-		.json({ status: 401, message: "Token must be provided and valid" });
 };

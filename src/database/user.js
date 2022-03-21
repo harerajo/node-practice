@@ -9,6 +9,8 @@ const userschema = new mongoose.Schema({
 	profilePicture: { type: String },
 	skills: { type: String },
 	experience: { type: String },
+	physicalAddress: { type: String },
+	profession: { type: String },
 });
 const Users = mongoose.model("User", userschema);
 

@@ -1,0 +1,2 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/571209215a4f3451c515/maintainability)](https://codeclimate.com/github/harerajo/node-practice/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/571209215a4f3451c515/test_coverage)](https://codeclimate.com/github/harerajo/node-practice/test_coverage)
