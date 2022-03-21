@@ -18,13 +18,13 @@ export const login = async (req, res) => {
 	const isPasswordEqual = await checkPassword(req.body.password, password);
 
 	if (!isPasswordEqual)
-		return res.status(404).json({
-			status: 404,
+		return res.status(401).json({
+			status: 401,
 			message: "Email or password is incorrect",
 		});
 	const token = generateToken({ id, email, name, role });
 
-	res.status(200).send({
+	return res.status(200).send({
 		status: 200,
 		message: "User logged in successfully",
 		data: { token },
@@ -34,9 +34,9 @@ export const login = async (req, res) => {
 export const signUp = async (req, res) => {
 	const { email, name, role } = req.body;
 	const password = await hashPassword(req.body.password);
-	const user = new Users({ name, email, role, password });
-	user.save();
-	res.status(201).send({
+	const user = await new Users({ name, email, role, password });
+	const newUser = await user.save();
+	return res.status(201).send({
 		status: 201,
 		message: "User created successfully",
 		data: { user },
@@ -54,12 +54,7 @@ export const getProfile = async (req, res) => {
 };
 
 export const updateProfile = async (req, res) => {
-	const user = await Users.findOneAndUpdate({email: req.email});
-	if (!user)
-		return res.status(404).json({
-			status: 404,
-			message: "User was not found",
-		});
+	const user = await Users.findOneAndUpdate({ email: req.email });
 
 	user.name = req.body.name;
 	user.profilePicture = req.body.profilePicture;
